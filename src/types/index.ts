@@ -49,10 +49,10 @@ export interface TailorProfile {
   id: number;
   username: string;
   email: string;
-  specialties: Specialty[];
+  specialty: string;
   starting_price: string | null;
-  service_area: string;
-  bio: string;
+  work_location: string;
+  working_hours: string;
   created_at: string;
   updated_at: string;
 }

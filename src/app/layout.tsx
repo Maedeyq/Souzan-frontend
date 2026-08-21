@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "./profile.css";
 
 export const metadata: Metadata = {
-  title: "Souzan",
-  description: "Marketplace connecting customers with tailors",
+  title: "سوزن | همراه خیاط و مشتری",
+  description: "سوزن، راهی ساده برای ارتباط مشتریان و خیاطان",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className="h-full antialiased">
+    <html lang="fa" dir="rtl" className="h-full antialiased">
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );

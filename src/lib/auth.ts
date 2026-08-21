@@ -1,17 +1,23 @@
 import { apiFetch, setTokens, clearTokens } from "./api";
+import type { User } from "@/types";
 
 interface TokenPair {
   access: string;
   refresh: string;
 }
 
-export async function login(username: string, password: string): Promise<void> {
+export async function login(username: string, password: string): Promise<User> {
   const tokens = await apiFetch<TokenPair>("/token/", {
     method: "POST",
     auth: false,
     body: JSON.stringify({ username, password }),
   });
   setTokens(tokens.access, tokens.refresh);
+  return getCurrentUser();
+}
+
+export function getCurrentUser(): Promise<User> {
+  return apiFetch<User>("/accounts/me/");
 }
 
 export function logout(): void {
