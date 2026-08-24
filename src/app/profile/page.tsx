@@ -3,8 +3,8 @@
 import { FormEvent, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { apiFetch, ApiError } from "@/lib/api";
-import { getCurrentUser, logout } from "@/lib/auth";
+import { getCurrentUser, logout } from "@/services/api/auth";
+import { apiFetch, ApiError } from "@/services/api/client";
 import type { CustomerProfile, TailorProfile, User } from "@/types";
 
 type Profile = CustomerProfile | TailorProfile;

@@ -1,10 +1,19 @@
-import { apiFetch, setTokens, clearTokens } from "./api";
 import type { User } from "@/types";
+
+import { apiFetch, clearTokens, setTokens } from "./client";
 
 interface TokenPair {
   access: string;
   refresh: string;
 }
+
+export interface CustomerRegistrationPayload {
+  username: string;
+  email: string;
+  password: string;
+}
+
+export type TailorRegistrationPayload = CustomerRegistrationPayload;
 
 export async function login(username: string, password: string): Promise<User> {
   const tokens = await apiFetch<TokenPair>("/token/", {
@@ -24,15 +33,7 @@ export function logout(): void {
   clearTokens();
 }
 
-export interface CustomerRegistrationPayload {
-  username: string;
-  email: string;
-  password: string;
-}
-
-export async function registerCustomer(
-  payload: CustomerRegistrationPayload
-): Promise<void> {
+export async function registerCustomer(payload: CustomerRegistrationPayload): Promise<void> {
   await apiFetch("/accounts/register/customer/", {
     method: "POST",
     auth: false,
@@ -40,15 +41,7 @@ export async function registerCustomer(
   });
 }
 
-export interface TailorRegistrationPayload {
-  username: string;
-  email: string;
-  password: string;
-}
-
-export async function registerTailor(
-  payload: TailorRegistrationPayload
-): Promise<void> {
+export async function registerTailor(payload: TailorRegistrationPayload): Promise<void> {
   await apiFetch("/accounts/register/tailor/", {
     method: "POST",
     auth: false,

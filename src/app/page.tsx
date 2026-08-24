@@ -2,8 +2,8 @@
 
 import { FormEvent, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { login, registerCustomer, registerTailor } from "@/lib/auth";
-import { ApiError } from "@/lib/api";
+import { login, registerCustomer, registerTailor } from "@/services/api/auth";
+import { ApiError } from "@/services/api/client";
 
 type View = "home" | "login" | "register";
 type Role = "customer" | "tailor";
