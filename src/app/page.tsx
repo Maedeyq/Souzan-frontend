@@ -2,6 +2,7 @@
 
 import { FormEvent, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { login, registerCustomer, registerTailor } from "@/services/api/auth";
 import { ApiError } from "@/services/api/client";
 
@@ -64,32 +65,36 @@ export default function Home() {
   }
 
   return <main>
+    <div className="announcement">دوخت سفارشی، با خیال آسوده و انتخاب آگاهانه</div>
     <header className="site-header">
       <a className="brand" href="#top" aria-label="سوزن، صفحه اصلی"><span className="brand-mark"><SewingIcon /></span><span>سوزن</span></a>
+      <div className="public-nav" aria-label="منوی سایت"><a href="#how">مسیر سفارش</a><a href="#trust">چرا سوزن؟</a><button onClick={() => { setRole("tailor"); open("register"); }}>برای خیاطان</button></div>
       <nav aria-label="دسترسی حساب کاربری">
         <button className="button button-ghost" onClick={() => open("login")}><span className="button-icon"><UserIcon /></span>ورود</button>
-        <button className="button button-primary" onClick={() => open("register")}>ثبت‌نام</button>
+        <button className="button button-primary" onClick={() => open("register")}>ساخت حساب</button>
       </nav>
     </header>
 
     <section className="hero" id="top">
+      <div className="hero-media"><Image src="/souzan-hero-pattern.png" alt="خیاط در کارگاه در حال آماده‌کردن الگوی دوخت روی پارچه سبز" fill priority sizes="(max-width: 850px) 100vw, 55vw" /></div>
       <div className="hero-copy">
-        <p className="eyebrow">ساده، روشن و در دسترس</p>
-        <h1>همراه مطمئن شما<br />در دنیای <span>خیاطی</span></h1>
-        <p className="lead">سوزن، راهی ساده برای ارتباط مشتریان و خیاطان است. حساب خود را بسازید و مسیرتان را آغاز کنید.</p>
+        <p className="eyebrow">هنر دست، برای زندگی امروز</p>
+        <h1>هنر دوخت، برای<br /><span>لباسِ شما</span></h1>
+        <p className="lead">در فضایی روشن و قابل اعتماد، درخواستت را ثبت کن، پیشنهادها را ببین و خیاط مناسب را با آرامش انتخاب کن.</p>
         <div className="hero-actions">
-          <button className="button button-primary button-large" onClick={() => open("register")}>ساخت حساب رایگان</button>
-          <button className="button button-secondary button-large" onClick={() => open("login")}>قبلاً ثبت‌نام کرده‌ام</button>
+          <button className="button button-primary button-large" onClick={() => open("register")}>ثبت درخواست دوخت</button>
+          <a className="button button-secondary button-large" href="#how">آشنایی با مسیر سفارش</a>
         </div>
-        <p className="helper">ثبت‌نام در کمتر از یک دقیقه</p>
-      </div>
-      <div className="role-panel" aria-label="انواع حساب در سوزن">
-        <article className="role-card"><div className="role-icon customer"><UserIcon /></div><div><h2>برای مشتریان</h2><p>حساب مشتری بسازید و اطلاعات خود را برای خدمات آینده آماده کنید.</p></div></article>
-        <article className="role-card featured"><div className="role-icon tailor"><SewingIcon /></div><div><h2>برای خیاطان</h2><p>به‌عنوان خیاط ثبت‌نام کنید و پروفایل حرفه‌ای خود را تکمیل کنید.</p></div></article>
-        <div className="trust-note"><span aria-hidden="true">✓</span><p><strong>امن و قابل اعتماد</strong><br />اطلاعات حساب شما با خیال آسوده نگهداری می‌شود.</p></div>
+        <div className="hero-assurance"><span>شفافیت قیمت</span><span>خیاط‌های حرفه‌ای</span><span>پیگیری ساده</span></div>
       </div>
     </section>
-    <footer><p>سوزن؛ پیوندی ساده میان خیاط و مشتری</p></footer>
+
+    <section className="trust-band" id="trust"><article><strong>انتخاب راحت</strong><p>پیشنهادها را کنار هم مقایسه کن</p></article><article><strong>ارتباط شفاف</strong><p>جزئیات سفارش همیشه در دسترس است</p></article><article><strong>کیفیت قابل اعتماد</strong><p>تجربه‌ی واقعی همکاری را ثبت کن</p></article></section>
+
+    <section className="journey" id="how"><p>مسیر ساده‌ی سفارش</p><h2>از یک ایده تا لباسی برای شما</h2><div><article><span>یک</span><h3>خواسته‌ات را تعریف کن</h3><p>بدون فرم پیچیده؛ فقط مدل، بودجه و زمانی که برای شروع لازم است.</p></article><article><span>دو</span><h3>با اطمینان انتخاب کن</h3><p>قیمت، زمان و پیشنهاد خیاط‌ها را در یک فضای روشن مقایسه کن.</p></article><article><span>سه</span><h3>روند کار را دنبال کن</h3><p>وضعیت سفارش را واضح و مرحله‌به‌مرحله تا تحویل ببین.</p></article></div></section>
+
+    <section className="role-invitation"><div><p>برای خیاطان حرفه‌ای</p><h2>هنر دستت را به مشتری درست نشان بده</h2><span>نمونه‌کارت را بساز، فرصت‌های تازه را ببین و سفارش‌هایت را ساده مدیریت کن.</span></div><button className="button button-primary" onClick={() => { setRole("tailor"); open("register"); }}>پیوستن به خیاطان سوزن</button></section>
+    <footer><p>سوزن؛ هنر دست، با خیال آسوده</p><span>© ۱۴۰۵ سوزن</span></footer>
 
     {view !== "home" && <div className="modal-backdrop" role="presentation" onMouseDown={(event) => event.target === event.currentTarget && close()}>
       <div className="modal" role="dialog" aria-modal="true" aria-labelledby="dialog-title" ref={dialogRef}>
