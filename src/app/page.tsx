@@ -54,7 +54,7 @@ export default function Home() {
     try {
       if (view === "login") {
         await login(String(data.get("username")), String(data.get("password")));
-        router.push("/profile");
+        router.push("/dashboard");
       } else {
         const payload = { username: String(data.get("username")), email: String(data.get("email")), password: String(data.get("password")) };
         if (role === "tailor") await registerTailor(payload); else await registerCustomer(payload);
