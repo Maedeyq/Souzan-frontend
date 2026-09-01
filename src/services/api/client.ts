@@ -48,8 +48,8 @@ async function refreshAccessToken(): Promise<string | null> {
     return null;
   }
 
-  const data = (await response.json()) as { access: string };
-  setTokens(data.access);
+  const data = (await response.json()) as { access: string; refresh?: string };
+  setTokens(data.access, data.refresh);
   return data.access;
 }
 

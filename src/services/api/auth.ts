@@ -38,6 +38,9 @@ export async function logoutFromServer(): Promise<void> {
   const refresh = typeof window === "undefined" ? null : localStorage.getItem(STORAGE_KEYS.refreshToken);
   try {
     if (refresh) await apiFetch("/accounts/logout/", { method: "POST", body: JSON.stringify({ refresh }) });
+  } catch {
+    // Local sign-out must still succeed if the refresh token has expired,
+    // was already rotated/blacklisted, or the API is temporarily unavailable.
   } finally {
     clearTokens();
   }
