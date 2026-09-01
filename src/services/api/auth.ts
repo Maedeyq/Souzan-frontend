@@ -1,6 +1,7 @@
 import type { User } from "@/types";
 
 import { apiFetch, clearTokens, setTokens } from "./client";
+import { STORAGE_KEYS } from "@/constants/storage";
 
 interface TokenPair {
   access: string;
@@ -31,6 +32,15 @@ export function getCurrentUser(): Promise<User> {
 
 export function logout(): void {
   clearTokens();
+}
+
+export async function logoutFromServer(): Promise<void> {
+  const refresh = typeof window === "undefined" ? null : localStorage.getItem(STORAGE_KEYS.refreshToken);
+  try {
+    if (refresh) await apiFetch("/accounts/logout/", { method: "POST", body: JSON.stringify({ refresh }) });
+  } finally {
+    clearTokens();
+  }
 }
 
 export async function registerCustomer(payload: CustomerRegistrationPayload): Promise<void> {
