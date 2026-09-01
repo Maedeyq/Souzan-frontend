@@ -3,7 +3,7 @@
 import { FormEvent, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { getCurrentUser, logout } from "@/services/api/auth";
+import { getCurrentUser, logout, logoutFromServer } from "@/services/api/auth";
 import { apiFetch, ApiError } from "@/services/api/client";
 import type { CustomerProfile, TailorProfile, User } from "@/types";
 
@@ -62,7 +62,7 @@ export default function ProfilePage() {
     }
   }
 
-  function signOut() { logout(); router.replace("/"); }
+  async function signOut() { await logoutFromServer(); router.replace("/"); }
 
   if (loading) return <main className="profile-state">در حال دریافت پروفایل…</main>;
   if (!user || !profile) return <main className="profile-state"><p>{message}</p><button className="button button-primary" onClick={() => router.push("/")}>بازگشت</button></main>;
@@ -72,8 +72,8 @@ export default function ProfilePage() {
 
   return <main className="profile-page">
     <header className="profile-header">
-      <Link className="brand" href="/"><span className="brand-mark">س</span><span>سوزن</span></Link>
-      <button className="button button-ghost" onClick={signOut}>خروج از حساب</button>
+      <Link className="brand" href="/dashboard"><span className="brand-mark">س</span><span>سوزن</span></Link>
+      <div className="profile-header-actions"><Link className="button button-secondary" href="/dashboard">میزکار</Link><button className="button button-ghost" onClick={signOut}>خروج از حساب</button></div>
     </header>
     <section className="profile-shell">
       <aside className="profile-summary">
