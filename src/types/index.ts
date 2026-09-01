@@ -85,6 +85,24 @@ export interface Notification {
   created_at: string;
 }
 
+export interface Review {
+  id: number;
+  order: number;
+  reviewer: number;
+  reviewer_username: string;
+  rating: number;
+  comment: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface PortfolioImage {
+  id: number;
+  image: string;
+  caption: string;
+  uploaded_at: string;
+}
+
 export interface PaginatedResponse<T> {
   count: number;
   next: string | null;
