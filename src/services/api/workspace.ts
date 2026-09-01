@@ -31,6 +31,13 @@ export const markAllNotificationsRead = () =>
 export const markNotificationRead = (id: number) =>
   apiFetch<Notification>(`/notifications/${id}/read/`, { method: "PATCH" });
 
+export async function getNotifications() {
+  return unpack(await apiFetch<Notification[] | PaginatedResponse<Notification>>("/notifications/"));
+}
+
+export const getNotification = (id: number) =>
+  apiFetch<Notification>(`/notifications/${id}/`);
+
 export const updateProject = (id: number, body: Record<string, unknown>) =>
   apiFetch<ProjectRequest>(`/projects/${id}/`, { method: "PATCH", body: JSON.stringify(body) });
 
