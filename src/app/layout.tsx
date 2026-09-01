@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import "./profile.css";
+import "./dashboard.css";
 
 export const metadata: Metadata = {
   title: "سوزن | همراه خیاط و مشتری",
