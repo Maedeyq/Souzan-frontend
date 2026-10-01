@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+/* Vazirmatn is self-hosted from /public/fonts (no external font requests). */
+@font-face { font-family: "Vazirmatn"; src: url("/fonts/vazirmatn-regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Vazirmatn"; src: url("/fonts/vazirmatn-bold.ttf") format("truetype"); font-weight: 600 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Vazirmatn"; src: url("/fonts/vazirmatn-extrabold.ttf") format("truetype"); font-weight: 800; font-style: normal; font-display: swap; }
+@font-face { font-family: "Vazirmatn"; src: url("/fonts/vazirmatn-black.ttf") format("truetype"); font-weight: 900; font-style: normal; font-display: swap; }
+
+/*
+ * Souzan design tokens: the single source of truth for the look of the site.
+ * Components use them through Tailwind classes (bg-brand, text-muted, rounded-card ...).
+ * Never hardcode hex colors, radii or shadows in components. See DESIGN.md.
+ */
+@theme {
+  --font-sans: "Vazirmatn", Tahoma, system-ui, sans-serif;
+
+  --color-brand: #0b1f3a;
+  --color-brand-soft: #16315a;
+  --color-accent: #c8102e;
+  --color-accent-strong: #a50d26;
+  --color-highlight: #f2b705;
+  --color-highlight-soft: #fff8dc;
+  --color-canvas: #f4f5f7;
+  --color-surface: #ffffff;
+  --color-ink: #0b1f3a;
+  --color-muted: #4d5b73;
+  --color-line: #e1e5ec;
+
+  --radius-control: 12px;
+  --radius-card: 14px;
+  --radius-window: 16px;
+
+  --shadow-card: 0 1px 2px rgb(11 31 58 / 0.06), 0 8px 24px rgb(11 31 58 / 0.08);
+  --shadow-window: 0 2px 4px rgb(11 31 58 / 0.06), 0 24px 60px rgb(11 31 58 / 0.16);
+
+  --container-page: 1140px;
+}
+
+@layer base {
+  html { color-scheme: light; scroll-padding-top: 6rem; }
+  body { background: var(--color-surface); color: var(--color-ink); font-family: var(--font-sans); font-size: 18px; line-height: 1.9; }
+  h1, h2, h3 { font-weight: 800; color: var(--color-brand); }
+  :focus-visible { outline: 3px solid var(--color-accent); outline-offset: 3px; }
+}

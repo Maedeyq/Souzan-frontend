@@ -1,4 +1,4 @@
-import { Button, FormField, Input, Select, Textarea } from "@/components/ui";
+import { Button, FormField, Input, Select, Textarea } from "@/components/legacy";
 
 export const metadata = { title: "نمایش اجزای رابط کاربری | سوزن" };
 
