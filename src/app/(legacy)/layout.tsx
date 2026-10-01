@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./legacy.css";
-import "./profile.css";
 import "./dashboard.css";
 
 /**
